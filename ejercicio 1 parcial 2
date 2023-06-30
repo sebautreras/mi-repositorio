@@ -1,0 +1,148 @@
+#Clases respectivas del problema
+
+class Video:
+    def __init__(self, titulo, autor, duracion):
+        self.titulo = titulo
+        self.autor = autor
+        self.duracion = duracion
+
+class NodoLista:
+    def __init__(self, video = None):
+        self.video = video
+        self.siguiente = None
+
+class ListaVideos:
+    def __init__(self):
+        self.primero = None
+        self.ultimo = None
+
+#metodo para agregar videos
+
+def agregar_video(self, video):
+        nuevo_nodo = NodoLista(video)
+        if self.primero is None:
+            self.primero = self.ultimo = nuevo_nodo
+        else:
+            self.ultimo.siguiente = nuevo_nodo
+            self.ultimo = nuevo_nodo
+        self.ultimo.siguiente = self.primero
+
+#Metodo para mostrar la lista de videos
+
+def mostrar_lista(self):
+        if self.primero is None:
+            print("La lista de videos está vacía")
+        else:
+            actual = self.primero
+            print("Lista de videos:")
+            while actual:
+                print(f"Título: {actual.video.titulo} | Autor: {actual.video.autor} | Duración: {actual.video.duracion}")
+                actual = actual.siguiente
+                if actual == self.primero:
+                    break
+                
+#Metodo para buscar videos
+
+def buscar_video(self, titulo):
+        if self.esta_vacia():
+            return None
+        actual = self.primero
+        while True:
+            if actual.video.titulo == titulo:
+                return actual.video
+            actual = actual.siguiente
+            if actual == self.primero:
+                break
+        return None
+
+#Metodo para eliminar un video
+
+def eliminar_video(self, titulo):
+        if self.esta_vacia():
+            return
+        actual = self.primero
+        anterior = None
+        while True:
+            if actual.video.titulo == titulo:
+                if actual == self.primero:
+                    self.primero = actual.siguiente
+                    self.ultimo.siguiente = self.primero
+                elif actual == self.ultimo:
+                    anterior.siguiente = self.primero
+                    self.ultimo = anterior
+                else:
+                    anterior.siguiente = actual.siguiente
+                break
+            anterior = actual
+            actual = actual.siguiente
+            if actual == self.primero:
+                break
+
+#Metodo para verificar si la lista de videos esta vacia
+
+def mostrar_lista(self):
+        if self.esta_vacia():
+            print("La lista de reproducción está vacía.")
+            return
+        actual = self.primero
+        while True:
+            print("Título:", actual.video.titulo)
+            print("Autor:", actual.video.autor)
+            print("Duración:", actual.video.duracion)
+            print("--------------------------")
+            actual = actual.siguiente
+            if actual == self.primero:
+                break
+
+#Ejemplo de uso
+
+playlist = ListaVideos()
+
+#Ejemplos para Agregar videos
+
+video1 = Video("Video 1", "Autor 1", "2 minutos")
+video2 = Video("Video 2", "Autor 2", "3 minutos")
+video3 = Video("Video 3", "Autor 3", "4 minutos")
+
+ListaVideos.añadir_video(video1)
+ListaVideos.añadir_video(video2)
+ListaVideos.añadir_video(video3)
+
+#Ejemplos para Mostrar lista de videos
+
+ListaVideos.ver_videos()
+
+lista = ListaVideos()
+
+#Ejemplos para Agregar videos
+
+video1 = Video("Video 1", "Autor 1", "2 minutos")
+video2 = Video("Video 2", "Autor 2", "3 minutos")
+video3 = Video("Video 3", "Autor 3", "4 minutos")
+
+lista.agregar_video(video1)
+lista.agregar_video(video2)
+lista.agregar_video(video3)
+
+#Mostrar lista de reproducción
+
+lista.mostrar_lista()
+
+#Ejemplos para Buscar un video
+
+video_encontrado = lista.buscar_video("Video 2")
+if video_encontrado:
+    print("Video encontrado:")
+    print("Título:", video_encontrado.titulo)
+    print("Autor:", video_encontrado.autor)
+    print("Duración:", video_encontrado.duracion)
+else:
+    print("El video no fue encontrado.")
+
+#Eliminar un video
+
+lista.eliminar_video("Video 1")
+
+#Mostrar lista actualizada
+
+lista.mostrar_lista()
