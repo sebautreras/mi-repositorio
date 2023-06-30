@@ -1,0 +1,91 @@
+#Definir la clase Tarea
+
+class Tarea:
+    def __init__(self, id, titulo, descripcion, estado):
+        self.id = id
+        self.titulo = titulo
+        self.descripcion = descripcion
+        self.estado = estado
+        self.siguiente = None
+        self.anterior = None
+
+#Definir la clase ListaTarea
+
+class ListaTareas:
+    def __init__(self):
+        self.inicio = None
+        self.fin = None
+
+#Permitir agregar tareas
+
+    def agregar_tarea(self, tarea):
+        if self.inicio is None:
+            self.inicio = tarea
+            self.fin = tarea
+        else:
+            tarea.anterior = self.fin
+            self.fin.siguiente = tarea
+            self.fin = tarea
+
+#Eliminar tareas
+
+    def eliminar_tarea(self, tarea):
+        if tarea.anterior is None:
+            self.inicio = tarea.siguiente
+        else:
+            tarea.anterior.siguiente = tarea.siguiente
+
+        if tarea.siguiente is None:
+            self.fin = tarea.anterior
+        else:
+            tarea.siguiente.anterior = tarea.anterior
+
+#Buscar una tarea en especifico
+
+    def buscar_tarea(self, id):
+        actual = self.inicio
+        while actual is not None:
+            if actual.id == id:
+                return actual
+            actual = actual.siguiente
+        return None
+
+#Cambiar el estado de las tareas
+
+    def cambiar_estado_tarea(self, tarea, nuevo_estado):
+        tarea.estado = nuevo_estado
+
+#Mostrar las tareas en orden ascendente segun su identificador
+
+    def mostrar_tareas(self):
+        actual = self.inicio
+        while actual is not None:
+            print("Id:", actual.id)
+            print("Titulo:", actual.titulo)
+            print("Descripcion:", actual.descripcion)
+            print("Estado:", actual.estado)
+            print("------------------------")
+            actual = actual.siguiente
+
+#Ejemplo de uso
+
+lista_tareas = ListaTareas()
+
+#Ejemplo para agregar las tareas
+
+tarea1 = Tarea(1, "resolver la prueba", "estudiar para la prueba", "pendiente")
+lista_tareas.agregar_tarea(tarea1)
+
+#Ejemplo para mostrar las tareas
+
+lista_tareas.mostrar_tareas()
+
+#Ejemplo para cambiar estado de la tarea
+
+tarea1 = lista_tareas.buscar_tarea(1)
+lista_tareas.cambiar_estado_tarea(tarea1, "en progreso")
+lista_tareas.mostrar_tareas()
+
+#Ejemplo para eliminar tarea
+
+ListaTareas.eliminar_tarea("tarea 3")
